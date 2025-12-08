@@ -22,3 +22,12 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://13.210.162.214:3150/eureka/
+
+jwt:
+  secret: "my-nextme-jwt-secret-key-very-long-1234567890"
+  access-token-validity-seconds: 1800      # 30분
+  refresh-token-validity-seconds: 1209600  # 14일
+
+logging:
+  level:
+    org.nextme.gatewayserver.config: INFO
