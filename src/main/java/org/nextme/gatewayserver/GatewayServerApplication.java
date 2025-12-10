@@ -3,7 +3,7 @@ package org.nextme.gatewayserver;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "org.nextme.common")
 public class GatewayServerApplication {
 
 	public static void main(String[] args) {
