@@ -37,6 +37,8 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j'
     implementation 'io.zipkin.reporter2:zipkin-reporter-brave'
 
+    implementation 'org.springdoc:springdoc-openapi-starter-webflux-ui:2.8.14'
+
 	runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'io.projectreactor:reactor-test'

@@ -23,10 +23,20 @@ eureka:
     service-url:
       defaultZone: http://34.50.7.8:3150/eureka/
 
-jwt:
-  secret: "my-nextme-jwt-secret-key-very-long-1234567890"
-  access-token-validity-seconds: 1800      # 30분
-  refresh-token-validity-seconds: 1209600  # 14일
+springdoc:
+  enable-native-support: true
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+    path: /api-docs.html
+    operations-sorter: alpha
+    tags-sorter: alpha
+    doc-expansion: full
+    config-url: /v3/api-docs/swagger-config
+    urls:
+      - url: /user-service/v3/api-docs
+        name: USER API
 
 logging:
   level:
