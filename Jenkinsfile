@@ -63,6 +63,7 @@ pipeline {
                   if [ \$(docker ps -aq -f name=${CONTAINER_NAME}) ]; then
                     docker stop ${CONTAINER_NAME} || true
                     docker rm ${CONTAINER_NAME} || true
+                    docker rmi ${FULL_IMAGE} || true
                   fi
 
                   # 새 컨테이너 실행 (GHCR 이미지 사용)

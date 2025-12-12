@@ -14,4 +14,31 @@ public class SwaggerConfig {
                 .pathsToMatch("/v1/user/**")
                 .build();
     }
+
+    @Bean
+    public GroupedOpenApi promotionAPI() {
+        return GroupedOpenApi.builder()
+                .group("promotion-api")
+                .displayName("Promotion API")
+                .pathsToMatch("/v1/promotions/**")
+                .build();
+    }
+
+    @Bean
+    public GroupedOpenApi pointAPI() {
+        return GroupedOpenApi.builder()
+                .group("point-api")
+                .displayName("Point API")
+                .pathsToMatch("/v1/points/**")
+                .build();
+    }
+
+    @Bean
+    public GroupedOpenApi notificationAPI() {
+        return GroupedOpenApi.builder()
+                .group("notification-api")
+                .displayName("Notification API")
+                .pathsToMatch("/v1/notifications/**")
+                .build();
+    }
 }
