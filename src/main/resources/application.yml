@@ -37,6 +37,13 @@ springdoc:
     urls:
       - url: /user-service/v3/api-docs
         name: USER API
+      - url: /notification-service/v3/api-docs
+        name: NOTIFICATION API
+      - url: /promotion-service/v3/api-docs
+        name: PROMOTION API
+      - url: /point-service/v3/api-docs
+        name: POINT API
+
 
 logging:
   level:

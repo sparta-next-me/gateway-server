@@ -19,7 +19,7 @@ public class SwaggerConfig {
     public GroupedOpenApi promotionAPI() {
         return GroupedOpenApi.builder()
                 .group("promotion-api")
-                .displayName("Promotion API")
+                .displayName("PROMOTION API")
                 .pathsToMatch("/v1/promotions/**")
                 .build();
     }
@@ -28,7 +28,7 @@ public class SwaggerConfig {
     public GroupedOpenApi pointAPI() {
         return GroupedOpenApi.builder()
                 .group("point-api")
-                .displayName("Point API")
+                .displayName("POINT API")
                 .pathsToMatch("/v1/points/**")
                 .build();
     }
@@ -37,7 +37,7 @@ public class SwaggerConfig {
     public GroupedOpenApi notificationAPI() {
         return GroupedOpenApi.builder()
                 .group("notification-api")
-                .displayName("Notification API")
+                .displayName("NOTIFICATION API")
                 .pathsToMatch("/v1/notifications/**")
                 .build();
     }
