@@ -42,8 +42,8 @@ public class SwaggerConfig {
                 .build();
     }
 
-        @Bean
-    public GroupedOpenApi notificationAPI() {
+    @Bean
+    public GroupedOpenApi chatAPI() {
         return GroupedOpenApi.builder()
                 .group("chat-api")
                 .displayName("CHAT API")
