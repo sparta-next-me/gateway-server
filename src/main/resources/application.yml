@@ -11,7 +11,17 @@ spring:
       discovery:
         enabled: true
         service-id: config-server
-
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOriginPatterns:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
 
 eureka:
   instance:
@@ -45,7 +55,6 @@ springdoc:
         name: POINT API
       - url: /chat-service/v3/api-docs
         name: CHAT API
-
 
 logging:
   level:
