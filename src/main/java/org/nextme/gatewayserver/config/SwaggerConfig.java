@@ -50,4 +50,22 @@ public class SwaggerConfig {
                 .pathsToMatch("/v1/chats/**")
                 .build();
     }
+
+    @Bean
+    public GroupedOpenApi accountAPI() {
+        return GroupedOpenApi.builder()
+                .group("account-api")
+                .displayName("ACCOUNT API")
+                .pathsToMatch("/v1/account/**")
+                .build();
+    }
+
+    @Bean
+    public GroupedOpenApi usergoalAPI() {
+        return GroupedOpenApi.builder()
+                .group("usergoal-api")
+                .displayName("USERGOAL API")
+                .pathsToMatch("/v1/usergoal/**")
+                .build();
+    }
 }
