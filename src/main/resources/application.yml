@@ -58,6 +58,10 @@ springdoc:
         name: POINT API
       - url: /chat-service/v3/api-docs
         name: CHAT API
+      - url: /account-service/v3/api-docs
+        name: ACCOUNT API
+      - url: /usergoal-service/v3/api-docs
+        name : USERGOAL API
 
 logging:
   level:
