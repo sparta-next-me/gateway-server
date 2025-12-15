@@ -11,17 +11,7 @@ spring:
       discovery:
         enabled: true
         service-id: config-server
-    gateway:
-      globalcors:
-        corsConfigurations:
-          '[/**]':
-            allowedOriginPatterns:
-              - "*"
-            allowedMethods:
-              - "*"
-            allowedHeaders:
-              - "*"
-            allowCredentials: true
+
 
 eureka:
   instance:
