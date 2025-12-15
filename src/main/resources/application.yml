@@ -43,6 +43,8 @@ springdoc:
         name: PROMOTION API
       - url: /point-service/v3/api-docs
         name: POINT API
+      - url: /chat-service/v3/api-docs
+        name: CHAT API
 
 
 logging:
