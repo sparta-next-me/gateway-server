@@ -11,20 +11,6 @@ spring:
       discovery:
         enabled: true
         service-id: config-server
-    gateway:
-      globalcors:
-        corsConfigurations:
-          '[/**]':
-            allowedOriginPatterns:
-              - "*"
-            allowedMethods:
-              - "*"
-            allowedHeaders:
-              - "*"
-            exposedHeaders:
-              - "*"
-            allowCredentials: true
-            maxAge: 3600
 
 eureka:
   instance:
