@@ -41,10 +41,11 @@ spec:
           ports:
             - containerPort: 3000 # 스프링 부트 포트
           env:
-            # [설명] 아까 만든 application-prod.yml 설정을 사용하도록 지정
             - name: SPRING_PROFILES_ACTIVE
               value: "prod"
-            # [설명] 유레카 서버 주소를 환경변수로 주입 (가장 우선순위 높음)
+            # [추가] 유레카에 물어보기 전에 컨피그 서버 위치를 바로 알려줌
+            - name: SPRING_CONFIG_IMPORT
+              value: "optional:configserver:http://config-server.next-me.svc.cluster.local:3100"
             - name: EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE
               value: "http://eureka-server.next-me.svc.cluster.local:3151/eureka/"
           resources:

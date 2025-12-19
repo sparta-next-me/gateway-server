@@ -1,7 +1,12 @@
+spring:
+  config:
+    # 쿠버네티스 내부 컨피그 서버 서비스 주소
+    import: 'optional:configserver:http://config-server.next-me.svc.cluster.local:3100'
+
 eureka:
   instance:
     prefer-ip-address: true
   client:
     service-url:
-      # 쿠버네티스 내부 Service DNS 주소
+      # 쿠버네티스 내부 유레카 서비스 주소
       defaultZone: http://eureka-server.next-me.svc.cluster.local:3151/eureka/

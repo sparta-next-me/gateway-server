@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- Spring Boot 속성 사용하려면 logback-spring.xml 이어야 함 -->
+    <springProperty scope="context" name="APP_NAME" source="spring.application.name" defaultValue="unknown-service"/>
+    <springProperty scope="context" name="PROFILE" source="spring.profiles.active" defaultValue="default"/>
+
+    <!-- (선택) Logback contextName도 서비스명으로 고정 -->
+    <contextName>${APP_NAME}</contextName>
+
+    <appender name="LOKI" class="com.github.loki4j.logback.Loki4jAppender">
+
+        <http>
+            <url>${LOKI_URL:-http://34.22.87.75:5100/loki/api/v1/push}</url>
+        </http>
+
+        <labels>
+            app = ${APP_NAME}
+            profile = ${PROFILE}
+            host = ${HOSTNAME}
+            agent = loki4j
+        </labels>
+
+        <structuredMetadata>
+            level = %level
+            logger = %logger
+            thread = %thread
+            traceId = %X{traceId}
+            spanId = %X{spanId}
+        </structuredMetadata>
+
+        <message>
+            <pattern>%d{HH:mm:ss.SSS} %msg%n</pattern>
+        </message>
+
+        <batch>
+            <staticLabels>true</staticLabels>
+        </batch>
+
+    </appender>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[${APP_NAME}] %d{HH:mm:ss.SSS} %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="LOKI"/>
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>

@@ -1,8 +1,13 @@
+spring:
+  config:
+    # [핵심] 로컬 컨피그 서버 주소를 직접 지정 (유레카보다 먼저 참조함)
+    import: 'optional:configserver:http://34.50.7.8:3100'
+
 eureka:
   instance:
-    # 로컬 도커 환경에서는 호스트네임보다 IP가 명확함
+    # 파드의 호스트네임 대신 실제 IP를 유레카에 등록
     prefer-ip-address: true
   client:
     service-url:
-      # 로컬에서 접근 가능한 유레카 주소 (기존 방식)
+      # 로컬에서 접근 가능한 외부 유레카 주소
       defaultZone: http://34.50.7.8:3150/eureka/

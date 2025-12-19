@@ -4,13 +4,6 @@ server:
 spring:
   application:
     name: gateway-server
-  config:
-    import: 'optional:configserver:'
-  cloud:
-    config:
-      discovery:
-        enabled: true
-        service-id: config-server
 
 springdoc:
   enable-native-support: true
