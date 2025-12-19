@@ -44,6 +44,10 @@ spec:
             - name: SPRING_PROFILES_ACTIVE
               value: "prod"
             # [추가] 유레카에 물어보기 전에 컨피그 서버 위치를 바로 알려줌
+            - name: SPRING_DATA_REDIS_HOST
+              value: "10.178.0.4" # kms@next-me-app 서버의 실제 내부 IP
+            - name: SPRING_DATA_REDIS_PORT
+              value: "6379"
             - name: SPRING_CONFIG_IMPORT
               value: "optional:configserver:http://config-server.next-me.svc.cluster.local:3100"
             - name: EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE
