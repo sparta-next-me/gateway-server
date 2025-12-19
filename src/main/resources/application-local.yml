@@ -1,0 +1,8 @@
+eureka:
+  instance:
+    # 로컬 도커 환경에서는 호스트네임보다 IP가 명확함
+    prefer-ip-address: true
+  client:
+    service-url:
+      # 로컬에서 접근 가능한 유레카 주소 (기존 방식)
+      defaultZone: http://34.50.7.8:3150/eureka/

@@ -12,16 +12,6 @@ spring:
         enabled: true
         service-id: config-server
 
-eureka:
-  instance:
-    prefer-ip-address: true
-
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://34.50.7.8:3150/eureka/
-
 springdoc:
   enable-native-support: true
   api-docs:

@@ -1,0 +1,7 @@
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      # 쿠버네티스 내부 Service DNS 주소
+      defaultZone: http://eureka-server.next-me.svc.cluster.local:3151/eureka/

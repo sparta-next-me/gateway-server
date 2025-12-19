@@ -1,0 +1,85 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway-server
+  namespace: next-me
+  labels:
+    app: gateway-server
+spec:
+  # 입구 역할을 하므로 가용성을 위해 2대로 설정 (app, infra 노드 분산)
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: gateway-server
+  template:
+    metadata:
+      labels:
+        app: gateway-server
+    spec:
+      # [설명] 유레카/컨피그처럼 서버 두 대에 골고루 찢어서 배포
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - gateway-server
+              topologyKey: "kubernetes.io/hostname"
+      imagePullSecrets:
+        - name: ghcr-cred
+      containers:
+        - name: gateway-server
+          image: ghcr.io/sparta-next-me/gateway-server:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000 # 스프링 부트 포트
+          env:
+            # [설명] 아까 만든 application-prod.yml 설정을 사용하도록 지정
+            - name: SPRING_PROFILES_ACTIVE
+              value: "prod"
+            # [설명] 유레카 서버 주소를 환경변수로 주입 (가장 우선순위 높음)
+            - name: EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE
+              value: "http://eureka-server.next-me.svc.cluster.local:3151/eureka/"
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+          # [설명] 게이트웨이가 완전히 떠서 요청을 받을 수 있는지 체크
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 3000
+            initialDelaySeconds: 40
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 3000
+            initialDelaySeconds: 60
+            periodSeconds: 20
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateway-server
+  namespace: next-me
+spec:
+  selector:
+    app: gateway-server
+  # [설명] 외부 브라우저나 클라이언트가 접속할 수 있도록 NodePort 사용
+  type: NodePort
+  ports:
+    - name: http
+      port: 3000       # 클러스터 내부용 포트
+      targetPort: 3000 # 컨테이너 내부 포트
+      nodePort: 30000  # [중요] 외부 접속용 포트 (http://서버IP:30000)
